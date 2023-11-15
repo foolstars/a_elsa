@@ -1,3 +1,4 @@
+# 1.最新操作系统、github构建
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,17 +22,24 @@ ENV PATH="/home/liy/packages/cuda-12.2/bin:${PATH}"
 ENV LD_LIBRARY_PATH="/home/liy/packages/cuda-12.2/lib64:${LD_LIBRARY_PATH}"
 
 WORKDIR /home/liy/
-RUN git clone https://github.com/yangaoli/ac_elsa.git
+RUN git clone https://github.com/yangaoli/a_elsa.git
+RUN cp -r ./a_elsa/elsa ./&&rm -rf a_elsa
 
 WORKDIR /home/liy/elsa/pybind_compcore/
-RUN make clean && make
-WORKDIR /home/liy/elsa/lsa/py_html/
+RUN g++ -std=c++14 -fPIC -shared \
+./*.cpp \
+-I /usr/include/python3.11 \
+-L /usr/lib/python3.11 \
+-lpython3.11 \
+-I/home/liy/packages/pybind11/include \
+-O3 -o ../lsa/compcore.so
+WORKDIR /home/liy/elsa/lsa/py_server/
 RUN apt-get clean
 
-CMD ["python3", "py_NET.py"]
+# CMD ["python3", "py_NET.py"]
 
-# docker build -t ubuntu/nvidia:1.0 .
-# docker run --gpus all -it ubuntu/nvidia:1.0
+# docker build -t elsa_server:1.0
+# docker run --gpus all -it elsa_server:1.0
 # docker run --gpus all -it --name my-ubuntu-container ubuntu/nvidia:1.0
 # docker login
 # docker tag ubuntu/nvidia:1.0 bingwujiayin/ubuntu/nvidia:1.0
