@@ -1,0 +1,11 @@
+[console_scripts]
+check_data = lsa.check_data:main
+fix_qv = lsa.fix_qv:main
+la_compute = lsa.la_compute:main
+la_query = lsa.la_query:main
+lsa_compute = lsa.lsa_compute:main
+lsa_query = lsa.lsa_query:main
+lsa_sim = lsa.lsa_sim:main
+lsa_version = lsa.lsa_version:main
+par_ana = lsa.par_ana:main
+to_trend = lsa.to_trend:main
