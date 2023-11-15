@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elsa</title>
+
+    <!-- 引入Google字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* 顶部横栏样式 */
+        .top-bar {
+            background-color: #0a2347;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f5f7;
+        }
+
+        
+        /* 导航栏样式 */
+        .navbar {
+            background-color: #00468b;
+            overflow: hidden;
+            padding: 10px 0;
+            display: flex; /* 添加 flexbox 布局 */
+            justify-content: flex-end; /* 使内容靠右对齐 */
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: border-bottom 0.3s;
+        }
+
+        .navbar a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: white;
+        transition: width 0.3s, left 0.3s;
+    }
+
+    .navbar a:hover::after {
+        width: 100%;
+        left: 0;
+    }
+
+
+
+        /* 默认隐藏所有部分 */
+        .section-content {
+            display: none;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        /* 上传部分样式 */
+        .upload-form h2,
+        .upload-form label,
+        .upload-form input,
+        .upload-form select {
+            margin-bottom: 10px;
+        }
+
+        .upload-form input[type="submit"] {
+            background-color: #00468b;
+            color: white;
+            cursor: pointer;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+    </style>
+
+    <script>
+        function showSection(id) {
+            // 隐藏所有部分
+            const sections = document.querySelectorAll('.section-content');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // 显示指定的部分
+            const targetSection = document.getElementById(id);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    
+
+    <!-- 顶部横栏 -->
+    <div class="top-bar">
+        欢迎使用elsa计算
+    </div>
+    <!-- 导航栏开始 -->
+    <div class="navbar">
+        <a href="javascript:showSection('online-calc')">在线计算</a>
+        <a href="javascript:showSection('dataset-display')">数据集展示</a>
+        <a href="javascript:showSection('introduction')">介绍网页</a>
+        <a href="javascript:showSection('software-archive')">软件压缩包</a>
+    </div>
+    <!-- 导航栏结束 -->
+
+    <!-- 首页 -->
+    <section id="home" class="section-content" style="display: block; background-color: #00468b; color: white; height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <h1>Welcome to Else Calculation</h1>
+    </section>
+
+    <!-- 在线计算部分开始 -->
+    <section id="online-calc" class="section-content" style="background-color: #F7F8FC; padding: 20px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    
+        <form action="/upload" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; align-items: center; width: 100%; gap: 10px;">
+
+        <h2 style="color: #4A90E2;">上传elsa计算相关信息</h2>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <label>
+                <input type="file" name="dataFile" accept=".csv" required>
+                <span>只接受txt格式的文件,必选项</span>
+            </label>
+
+            <label>
+                <input type="file" name="extraFile" accept=".csv">
+                <span>只接受txt格式的文件,非必选项</span>
+            </label>
+
+            <label>
+                <input type="number" name="delayLimit" step="1" placeholder="输入delaytime-默认0">
+            </label>
+
+            <label>
+                <input type="number" name="minoccur" step="1" placeholder="输入minoccur-默认50">
+            </label>
+
+            <label>
+                <input type="number" name="precision" step="1" placeholder="输入precision-默认arg_precision_default">
+            </label>
+
+            <label>
+                <input type="number" name="repNum" step="1" placeholder="输入repNum-默认1">
+            </label>
+
+            <label>
+                <input type="number" name="spotNum" step="1" placeholder="输入spotNum-默认4">
+            </label>
+
+            <label>
+                <input type="number" name="trendThresh" step="any" placeholder="输入trendThresh-默认None">
+            </label>
+
+            <label>
+                <input type="number" name="approxVar" step="any" placeholder="输入approxVar-默认1.0">
+            </label>
+
+            <label>
+                <input type="number" name="progressive" step="1" placeholder="输入progressive-默认1">
+            </label>
+
+            <h2>上传elsa计算相关信息</h2>
+            <label>
+                <select name="qvalueMethod">
+                    <option value="scipy">scipy</option>
+                </select>
+                <span>qvalueMethod默认scipy</span>
+            </label>
+
+            <label>
+                <select name="pvalueMethod">
+                    <option value="perm">perm</option>
+                    <option value="theo">theo</option>
+                    <option value="mix">mix</option>
+                </select>
+                <span>pvalueMethod默认perm</span>
+            </label>
+
+            <label>
+            <select name="pvalueMethod">
+            <option value="perm">perm</option>
+            <option value="theo">theo</option>
+            <option value="mix">mix</option>
+        </select>
+                <span>pvalueMethod默认perm</span>
+                </label>
+
+           <label>
+        <select name="bootNum">
+            <option value="0">0</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+            <option value="2000">2000</option>
+        </select>
+               <span>bootNum默认0</span>
+               </label>
+
+            <label>
+        <select name="transFunc">
+            <option value="simple">simple</option>
+            <option value="SD">SD</option>
+            <option value="Med">Med</option>
+            <option value="MAD">MAD</option>
+        </select>
+                <span>transFunc默认simple</span>
+        </label>
+
+              <label>
+        <select name="fillMethod">
+            <option value="none">none</option>
+            <option value="zero">zero</option>
+            <option value="liner">liner</option>
+            <option value="quadratic">quadratic</option>
+            <option value="curbic">curbic</option>
+            <option value="slinear">slinear</option>
+            <option value="nearest">nearest</option>
+        </select>
+                  <span>fillMethod默认none</span>
+                   </label>
+
+        <label>
+        <select name="normMethod">
+            <option value="robustZ">robustZ</option>
+            <option value="percentile">percentile</option>
+            <option value="percentileZ">percentileZ</option>
+            <option value="pnz">pnz</option>
+            <option value="rnz">rnz</option>
+            <option value="none">none</option>
+        </select>
+            <span>normMethod默认robustZ</span>
+        </label>
+            <!-- ... 其他输入字段按照上述模式进行 ... -->
+
+            <h2>elsa计算结果输出文件名</h2>
+            <label>
+                <input type="text" name="resultFile" placeholder="输入希望得到的文件名称-resultFile">
+            </label>
+
+            <input type="submit" value="click to submit" style="background-color: #4A90E2; color: #FFF; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
+        </div>
+    </form>
+
+    <h1 style="margin-top: 20px; color: #4A90E2;text-align: center;">Welcome to the Upload Page</h1>
+    <div style="text-align: center;">
+    <a href="{{ url_for('upload') }}" style="color: #4A90E2; text-decoration: none; margin-right: 10px;">Go to Upload Page</a>
+    <a href="{{ url_for('network') }}" style="color: #4A90E2; text-decoration: none;">Go to Network Page</a>
+</div>
+</section>
+
+    </section>
+
+    <!-- 在线计算部分结束 -->
+
+<!-- 数据集展示部分开始 -->
+<section id="dataset-display" class="section-content">
+    <div class="container">
+        <!-- Section Header -->
+        <div class="section-header">
+            <h2>数据集网络可视化</h2>
+            <p>在这里，您可以预览基于所选数据集的网络图可视化。</p>
+        </div>
+
+        <!-- Network Visualization Container -->
+        <div id="network-graph" style="width:100%; height:600px; background-color: #f5f5f5;">
+            <!-- The network graph will be rendered here by the JavaScript -->
+        </div>
+
+        <!-- Controls for the User to trigger visualization -->
+        <div class="form-group">
+            <label for="dataset-file">上传数据集 (CSV格式):</label>
+            <input type="file" class="form-control" id="dataset-file" name="dataset-file">
+        </div>
+        <button id="visualize-btn" class="btn btn-primary">开始可视化</button>
+    </div>
+
+    <script src="path/to/your/d3.js"></script> <!-- if you're using D3.js -->
+    <script>
+        document.getElementById('visualize-btn').addEventListener('click', function() {
+            var file = document.getElementById('dataset-file').files[0];
+            if (file) {
+                // TODO: Upload the file to the server, and get the adjacency matrix or the graph data in return.
+
+                // Here, call the function that will visualize the graph.
+                // This is a placeholder and should be replaced by actual function.
+                visualizeNetworkGraph(file); 
+            } else {
+                alert('请先选择一个文件。');
+            }
+        });
+
+        function visualizeNetworkGraph(file) {
+            // This function is supposed to render the network graph.
+            // You might want to use a library like D3.js for complex visualizations.
+
+            // TODO: Implement the graph visualization logic here.
+        }
+    </script>
+</section>
+<!-- 数据集展示部分结束 -->
+
+
+
+
+    <!-- 介绍网页部分开始 -->
+<section id="introduction" class="section-content" style="background-color: #F7F8FC; padding: 20px; border-radius: 10px;">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h2 style="color: #4A90E2;">网站介绍</h2>
+        <p>欢迎来到我们的专业平台！这个平台是设计用来... [这里简短介绍你的平台的目的和它如何帮助你的目标受众。]</p>
+
+        <!-- 可以根据需要在这里添加更多段落 -->
+        <p>我们的专家团队... [这里可以介绍团队的专业知识、经验、成就等。]</p>
+        <p>通过使用我们的平台，您可以... [这里介绍平台的一些关键功能或服务，以及用户如何从中受益。]</p>
+        
+        <!-- 呼吁行动按钮，引导用户进行下一步 -->
+        <a href="#features" style="align-self: start; background-color: #4A90E2; color: #FFF; padding: 10px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">了解更多</a>
+    </div>
+</section>
+<!-- 介绍网页部分结束 -->
+
+
+    <!-- 介绍网页部分结束 -->
+
+    <!-- 软件压缩包部分开始 -->
+<section id="software-archive" class="section-content" style="background-color: #F7F8FC; padding: 20px; border-radius: 10px;">
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h2 style="color: #4A90E2;">软件下载</h2>
+        <p style="margin-bottom: 20px;">在这里，我们提供了我们软件的最新版本，您可以根据需要下载。请阅读每个版本的发行说明，了解最新的功能和改进。</p>
+
+        <!-- 软件列表 -->
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- 软件项开始 -->
+            <div>
+                <h3 style="margin-bottom: 10px;">软件名称1 v1.2.3</h3>
+                <p style="margin-bottom: 10px;">这个版本包括了... [软件描述]</p>
+                <a href="path_to_software_1.zip" download style="color: #4A90E2; text-decoration: none;">下载软件</a>
+            </div>
+            <!-- 软件项结束 -->
+
+            <!-- 更多软件... 复制上面的块并根据需要进行修改 -->
+
+            <!-- 软件项开始 -->
+            <div>
+                <h3 style="margin-bottom: 10px;">软件名称2 v2.1.4</h3>
+                <p style="margin-bottom: 10px;">本次更新特色... [软件描述]</p>
+                <a href="path_to_software_2.zip" download style="color: #4A90E2; text-decoration: none;">下载软件</a>
+            </div>
+            <!-- 软件项结束 -->
+        </div>
+
+        <!-- 如果有必要，添加一个链接到更全面的软件集合页面 -->
+        <a href="full_software_collection.html" style="color: #4A90E2; text-decoration: none; align-self: center; margin-top: 20px;">浏览所有可用软件</a>
+    </div>
+</section>
+<!-- 软件压缩包部分结束 -->
+
+
+
+</body>
+</html>
