@@ -34,6 +34,7 @@ def upload():
         if extraFile.filename == '':
             return 'No extraFile', 400
         else:
+            
             if extraFile and allowed_file(extraFile.filename):
                 file_path = os.path.join(app.config['UPLOAD_FOLDER'], extraFile.filename)
                 extraFile.save(file_path)
