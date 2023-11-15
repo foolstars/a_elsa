@@ -6,4 +6,8 @@ g++ -std=c++14 -fPIC -shared \
 -I/home/liy/packages/pybind11/include \
 -O3 -o ../lsa/compcore.so
 
+
+
+
+
 make clean&&make
