@@ -42,35 +42,68 @@ def upload():
     else:
         second_file = dataFile
 
+    delayLimit=0
+    repNum=1
+    spotNum=4
+    minoccur=50
+    precision=1000
+    approxVar=1.0
+    progressive=1
+
     if (request.form['delayLimit']):
         delayLimit = int(request.form['delayLimit']) 
+        # print(delayLimit,"hello")
+        # print("hello")
+
     if (request.form['minoccur']):
         minoccur = int(request.form['minoccur'])
+        # print(minoccur)
+
     if (request.form['precision']):
         precision = int(request.form['precision'])
+        # print(precision)
+
     if (request.form['repNum']):
         repNum = int(request.form['repNum'])
+        # print(repNum)
+
     if (request.form['spotNum']):
         spotNum = int(request.form['spotNum'])
+        # print(spotNum)
+
     if (request.form['trendThresh']):
         trendThresh = float(request.form['trendThresh'])
     if (request.form['approxVar']):
         approxVar = float(request.form['approxVar'])
+        # print(approxVar)
+
     if (request.form['progressive']):
         progressive = int(request.form['progressive'])
+        # print(progressive)
 
     qvalueMethod = request.form['qvalueMethod']
+    # print(qvalueMethod)
+
     pvalueMethod = request.form['pvalueMethod']
+    # print(pvalueMethod)
     
     bootNum = request.form['bootNum']
-    transFunc = request.form['transFunc']        
+    # print(bootNum)
+
+    transFunc = request.form['transFunc']   
+    # print(transFunc)
+
     normMethod = request.form['normMethod']
+    # print(normMethod)
+
     fillMethod = request.form['fillMethod']
+    # print(fillMethod)
 
     if (request.form['resultFile']):
         resultFile = (request.form['resultFile'])+'.csv'
     else:
         resultFile = 'resultFile.csv'
+
 
     # 构建命令
     script_name = "../lsa_gpu_compute.py"

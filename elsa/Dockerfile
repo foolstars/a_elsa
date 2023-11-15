@@ -40,7 +40,8 @@ CMD ["python3", "py_NET.py"]
 
 
 
-# docker build -t elsa_server:1.0 .&&docker run --gpus all elsa_server:1.0
+
+# docker build -t elsa_server:1.0 .&&docker run -p 5002:5002 --gpus all elsa_server:1.0
 # docker run --gpus all -it --name my-ubuntu-container elsa_server:1.0
 # docker login
 # docker tag elsa_server:1.0 bingwujiayin/elsa_server:1.0
