@@ -1,5 +1,3 @@
-# Makefile for compiling C++ code with pybind11 and linking to Python
-
 CXX := g++
 CXXFLAGS := -std=c++14 -fPIC -shared -O3
 INCLUDES := -I /home/liy/new/myenv/include/python3.11 -I/home/liy/packages/pybind11/include

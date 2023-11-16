@@ -60,26 +60,26 @@ class ThreadPool
         int* x_0_data;
         int* x_1_data;
         int* y_0_data;
-        int* y_1_data;//外部Api接口以及输出Api
+        int* y_1_data;
 
-        long long pool_size;//线程池需要的总体需要的线程
-        int threads_num;//线程池获得的线程数
-        atomic<long long> num_r;//标志着线程处理数据的起点位置===========================>设置为原子变量
-        atomic<long long> num_end;//标志着每一线程得到结束的计算=========================>设置为原子变量
+        long long pool_size;
+        int threads_num;
+        atomic<long long> num_r;
+        atomic<long long> num_end;
 
         vector<thread> workers;
         bool stop = false;
 
         void workerFunction()
         {
-            long long num_x = num_r.fetch_add(1, memory_order_relaxed); // 使用原子的 fetch_add 操作
+            long long num_x = num_r.fetch_add(1, memory_order_relaxed);
 
             ptr_rx = new float[COL];
             ptr_ry = new float[COL];
 
             while (true)
             {
-                if (num_x < pool_size)//判断线程所处数据位置，如果在尾端，退出线程，并做出记号
+                if (num_x < pool_size)
                 {
                     rx = num_x / num_02;
                     ry = num_x % num_02;
@@ -93,7 +93,7 @@ class ThreadPool
                 copy(y_ptr + ry * COL, y_ptr + ry * COL + COL, ptr_ry);
                 copy(x_ptr + rx * COL, x_ptr + rx * COL + COL, ptr_rx);
                 
-                vector<float>matr_ptr(ROW * COL);//动态规划判断矩阵
+                vector<float>matr_ptr(ROW * COL);
 
                 for (int i = 0; i < ROW; ++i)
                 {
@@ -113,7 +113,7 @@ class ThreadPool
                 int P = 0;
                 int J = 0;
 
-                for (int i = 0; i < ROW; ++i)//对结果进行判断输出
+                for (int i = 0; i < ROW; ++i)
                 {
                     vector<float> a_num(matr_ptr.begin() + i * COL, matr_ptr.begin() + (i + 1) * COL);
                     int p = 0;
