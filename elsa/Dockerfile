@@ -5,8 +5,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     wget sudo git make gcc g++ python3.11 python3.11-dev python3-pip\
     &&update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1\
-    &&python3 -m pip install numpy h5py flask pandas graphistry\
     &&wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb\
+    &&python3 -m pip install numpy h5py flask pandas graphistry\
     &&sudo dpkg -i cuda-keyring_1.1-1_all.deb\
     &&apt-get update && apt-get install -y cuda
 
@@ -32,10 +32,15 @@ RUN g++ -std=c++14 -fPIC -shared \
 -lpython3.11 \
 -I/home/liy/packages/pybind11/include \
 -O3 -o ../lsa/compcore.so
+
+WORKDIR /home/liy/elsa/
+RUN python3 -m pip install tqdm scipy
+RUN python3 setup.py build&&python3 setup.py install
 WORKDIR /home/liy/elsa/lsa/py_server/
 RUN apt-get clean
 
-# CMD ["python3", "py_NET.py"]
+
+CMD ["python3", "py_NET.py"]
 
 
 

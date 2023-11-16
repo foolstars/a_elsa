@@ -16,7 +16,9 @@ lsa/lsa_version.py
 lsa/lsaio.py
 lsa/lsalib.py
 lsa/lsalibx.py
+lsa/m.py
 lsa/par_ana.py
+lsa/ppi.py
 lsa/ptheo.py
 lsa/ssa.py
 lsa/to_trend.py
