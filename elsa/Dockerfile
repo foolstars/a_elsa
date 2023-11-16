@@ -1,4 +1,3 @@
-# 1.最新操作系统、github构建
 FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
