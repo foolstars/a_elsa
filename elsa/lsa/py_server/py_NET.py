@@ -107,7 +107,7 @@ def upload():
 
     # 构建命令
     script_name = "../lsa_gpu_compute.py"
-    command = f"python {script_name} {os.path.join(app.config['UPLOAD_FOLDER'], first_file.filename)} {resultFile} \
+    command = f"python3 {script_name} {os.path.join(app.config['UPLOAD_FOLDER'], first_file.filename)} {resultFile} \
                         -e {os.path.join(app.config['UPLOAD_FOLDER'], second_file.filename)} \
                         -d {delayLimit} -r {repNum} -s {spotNum} -m {minoccur} -p {pvalueMethod} \
                         -x {precision} -b {bootNum} -t {transFunc} -f {fillMethod} -n {normMethod} \
