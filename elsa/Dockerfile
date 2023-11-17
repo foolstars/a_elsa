@@ -39,14 +39,14 @@ RUN g++ -std=c++14 -fPIC -shared \
 
 
 WORKDIR /home/liy/elsa/
-RUN python.11 -m pip install tqdm scipy
-RUN python.11 setup.py build
-RUN python.11 -m pip install .
+RUN python3.11 -m pip install tqdm scipy
+# RUN python3.11 setup.py build
+# RUN python3.11 -m pip install .
 WORKDIR /home/liy/elsa/lsa/py_server/
 RUN apt-get clean
 
 
-CMD ["python3", "py_NET.py"]
+# CMD ["python3", "py_NET.py"]
 
 
 

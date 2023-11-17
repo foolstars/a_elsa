@@ -48,8 +48,6 @@ from itertools import chain
 import csv, sys, os, random, tempfile, time
 import multiprocessing
 import numpy as np
-import numpy.testing
-#import numpy.ma as np.ma
 import scipy as sp
 import scipy.interpolate
 import scipy.stats
