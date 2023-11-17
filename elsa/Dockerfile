@@ -39,9 +39,9 @@ RUN g++ -std=c++14 -fPIC -shared \
 
 
 WORKDIR /home/liy/elsa/
-RUN python -m pip install tqdm scipy
-RUN python setup.py build
-RUN python setup.py install
+RUN python.11 -m pip install tqdm scipy
+RUN python.11 setup.py build
+RUN python.11 -m pip install .
 WORKDIR /home/liy/elsa/lsa/py_server/
 RUN apt-get clean
 

@@ -46,7 +46,6 @@
 import warnings
 from itertools import chain
 import csv, sys, os, random, tempfile, time
-from joblib import Parallel, delayed
 import multiprocessing
 import numpy as np
 import numpy.testing
