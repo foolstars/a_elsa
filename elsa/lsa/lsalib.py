@@ -52,7 +52,6 @@ import scipy as sp
 import scipy.interpolate
 import scipy.stats
 import scipy.linalg
-#Import R through Rpy2
 rpy_import = False
 #try:
 #  import rpy2
@@ -72,11 +71,9 @@ rpy_import = False
 
 #import lower level resource
 try:
-  #else run as installed
   from lsa import compcore
   np.seterr(all='ignore')                             #ignore RuntimeWarning of abs in installed mode
 except ImportError:
-  #try for debug
   import compcore
   np.seterr(all='warn')
 

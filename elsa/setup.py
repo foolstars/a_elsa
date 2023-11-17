@@ -69,7 +69,7 @@ setup(name="lsa",
     include_package_data=True,
 
     zip_safe=False,
-    install_requires=["python >= 3.8","numpy >= 1.0","scipy >= 0.6"],
+    # install_requires=["python >= 3.8","numpy >= 1.0","scipy >= 0.6"],
     provides=['lsa'],
     py_modules = ['lsa.compcore', 'lsa.lsalib', 'lsa.lsaio', 'lsa.laio'],
     cmdclass = {'build': my_build},

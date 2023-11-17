@@ -33,7 +33,6 @@ import compcore
 import numpy as np
 import scipy as sp
 import h5py
-#import lsa
 import sys, csv, re, os, time, argparse, string, tempfile
 try:
   import lsalib
